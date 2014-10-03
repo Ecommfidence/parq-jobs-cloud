@@ -1,0 +1,64 @@
+<br><br><br>
+<div ng-controller="jobSingleCtrl" class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 class="text-center">Title: {{job.attributes.title}}</h1>
+            <p class="lead text-center">Location: {{job.attributes.city}}, {{job.attributes.state}}</p>
+            <p>Type: {{job.attributes.type}}</p>
+            <img alt="Enter An Image Url" src="{{job.attributes.img}}" alt="" class="img-responsive">
+            <p>Preview:</p>
+            <div ng-bind-html="job.attributes.description"></div>
+            <div class="text-center">
+                <a class="button-small red_dark rounded" ng-click="delete()">Delete</a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h1 class="text-center">Edit Job Posting</h1>
+            <form ng-submit="update(job.id)">
+                <div class="btn-group">
+                    <button class="btns btn btn-lg btn-labe">
+                        <h4 class="text-center">Job Type:</h4>
+                    </button>
+
+                    <button class="btns btn btn-lg" ng-class="{active: data.type==='Restaurant'}" ng-click="data.type='Restaurant'">
+                        <h4><i class="fa fa-coffee"></i> Restaurant</h4>
+                    </button>
+                    <button class="btns btn btn-lg" ng-class="{active: data.type==='Bar'}" ng-click="data.type='Bar'">
+                    <h4><i class="fa fa-beer"></i> Bar</h4>
+                    </button>
+                    <button class="btns btn btn-lg" ng-class="{active: data.type==='Club'}" ng-click="data.type='Club'">
+                        <h4><i class="fa fa-group"></i> Club</h4>
+                    </button>
+                </div><br>
+                <button class="btns btn btn-lg btn-labe">
+                    <h4 class="text-center">Title:</h4>
+                </button>
+                    <input type="text" ng-model="data.title" class='form-control btns btn btn-lg type' placeholder="Enter Title" required>
+                <br>
+                <button class="btns btn btn-lg btn-labe">
+                    <h4 class="text-center">City:</h4>
+                </button>
+                <input type="text" ng-model="data.city" class='form-control btns btn btn-lg type' placeholder="Enter City" required>
+                <br>
+                <button class="btns btn btn-lg btn-labe">
+                    <h4 class="text-center">State:</h4>
+                </button>
+                <input type="text" ng-model="data.state" class='form-control btns btn btn-lg type' placeholder="State Abbreviation" required>
+                <br>
+                <button class="btns btn btn-lg btn-labe">
+                    <h4 class="text-center">Image:</h4>
+                </button>
+                <input type="text" ng-model="data.img" class='form-control btns btn btn-lg type' placeholder="Image URL" required>
+                <br>
+                <summernote config="options" ng-model="data.description"></summernote>
+
+                <div class="checkbox">
+                        <label>
+                                <input type="checkbox" class="i-grey-flat" required> I've checked and have followed procedure.
+                        </label>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>Update</button>
+            </form>
+        </div>
+    </div>
+</div>

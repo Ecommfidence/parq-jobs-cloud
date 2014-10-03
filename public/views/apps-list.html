@@ -1,0 +1,25 @@
+<div ng-controller="ApplicationsCtrl">
+	<h1 class="text-center">Recent Applications</h1>
+	<div class="table-responsive">
+	<table>
+<!-- 		<div class="text-center">
+	<input class="form-control" type="text" placeholder="Search..." ng-model="search">
+</div>
+<br> -->
+		<thead>
+			<tr class="table-heading">
+				<th class="text-center">NAME</th>
+				<th class="text-center">JOB</th>
+				<th class="text-center">DATE APPLIED</th>
+			</tr>
+		</thead>
+		<tbody class="sidebar-table">
+			<tr class="text-center" ng-repeat="app in applications | filter:search" ng-click="view(app.id)">
+				<td>{{app.attributes.name}}</td>
+				<td>{{app.attributes.job}}</td>
+				<td>{{app.createdAt | date}}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<br><br><br>
+<div class="container">
+	<div class="job-dets-field dets-def">
+		<div class="abs-center">
+			<h1 class="white text-center">{{jobscount}} Positions In San Diego</h1>
+			<br>
+			<div class="text-center">
+				<a ng-click="more()" class="text-center width60 btn btn-primary turq-color btn-lg btn-perspective inline">Details</a>
+			</div>
+			<br>
+		</div>
+	</div>
+	<h3 class="white text-center">Openings</h3>
+	<ul>
+		<li ng-repeat="job in jobs" ng-click="more()">{{job.attributes.title}}</li>
+	</ul>
+</div>
+

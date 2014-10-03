@@ -1,0 +1,18 @@
+{
+    "applications": {
+        "_default": {
+            "link": "wsaentjobs"
+        }, 
+        "wsaentjobs": {
+            "applicationId": "gdBPSv6Ksvi2b5wNi9QCuj0UsDLxo10P3ovFH6dM", 
+            "masterKey": "MGPnX3vHGyx6Ct3Zn3XZcsorqAsvbWb8VzdwqEIi"
+        },
+        "wsa-dev": {
+            "applicationId": "KdbGzN8Y7Mc0fqnYNvVY7IWmL5ShI4j36UnTtduc", 
+            "masterKey": "TU585dMnZcakd1nh4LF9oAPlLZtOvOCLswyTZs2p"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.19"
+    }
+}

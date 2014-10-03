@@ -1,0 +1,59 @@
+<!-- BEGIN SIDEBAR RIGHT HEADING -->
+<div class="sidebar-right-heading">
+    <ul class="nav nav-tabs square nav-justified">
+        <li ng-if="currentUser.attributes.role === 'user'" class="active"><a data-target="#online-user-sidebar" data-toggle="tab"><i class="fa fa-comments"></i></a></li>
+        <li ng-if="currentUser.attributes.role === 'admin'"><a data-target="#notification-sidebar" data-toggle="tab"><i class="fa fa-bell"></i></a></li>
+        <li ng-if="currentUser.attributes.role === 'admin'"><a data-target="#task-sidebar" data-toggle="tab"><i class="fa fa-tasks"></i></a></li>
+    </ul>
+</div><!-- /.sidebar-right-heading -->
+<!-- END SIDEBAR RIGHT HEADING -->
+
+
+
+<!-- BEGIN SIDEBAR RIGHT -->
+<div class="sidebar-right sidebar-nicescroller">
+<div class="tab-content">
+<div class="tab-pane fade" id="online-user-sidebar" ng-if="currentUser.attributes.role === 'user'">
+    <ul class="sidebar-menu online-user">
+        <li class="static">RECENT BLOG POSTS</li>
+        <li><a href="">
+            <span class="user-status success"></span>
+            <img src="http://placehold.it/30x30" class="ava-sidebar img-circle" alt="Avatar">
+            Blog Post 1
+            <span class="small-caps">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</span>
+        </a></li>
+    </ul>
+</div>
+<div class="tab-pane fade in active" id="notification-sidebar" ng-controller="topAppCtrl">
+    <ul class="sidebar-menu sidebar-notification">
+        <li class="static">TOP APPLICATIONS</li>
+        <li ng-repeat="app in applications | limitTo: 5" ng-click="view(app.id)">
+            <a href="" data-toggle="tooltip" title="{{app.attributes.name}}" data-placement="left">
+                <i class="fa fa-bookmark-o ava-sidebar"></i>
+                <span class="activity">{{app.attributes.name}} - Job ID # {{app.attributes.job}}</span>
+                <span class="small-caps">{{app.createdAt | date}}</span>
+             </a>
+        </li>
+
+        <div class="text-center">
+            <a class="btn btn-primary btn-sm" ng-href="#/applications">View All</a>
+        </div>
+    </ul>
+</div>
+<div class="tab-pane fade" id="task-sidebar" ng-controller="OpeningList">
+    <ul class="sidebar-menu sidebar-task">
+        <li class="static">CURRENT JOB POSTINGS</li>
+        <li ng-repeat="job in jobs | limitTo:10" ng-click="view(job.id)"><a href="" data-toggle="tooltip" title="{{job.attributes.title}}" data-placement="left">
+            <i class="fa fa-joomla icon-task-sidebar uncompleted"></i>
+            {{job.attributes.title}}
+            <span class="small-caps">{{job.attributes.loc}}</span>
+        </a></li>
+    </ul>
+    <div class="text-center">
+        <a ng-href="#/jobs" class="btn btn-primary btn-sm">View All</a>
+        <a ng-href="#/new-job" class="btn btn-danger btn-sm">Post New Job</a>
+    </div>
+</div><!-- /#task-sidebar -->
+</div><!-- /.tab-content -->
+</div><!-- /.sidebar-right -->
+<!-- END SIDEBAR RIGHT -->

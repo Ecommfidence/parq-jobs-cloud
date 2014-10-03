@@ -1,0 +1,167 @@
+<section class="margtop60">
+  <div class="container">
+    <div class="col-sm-12">
+      <h1 class="white text-center">Apply For {{job.attributes.title}}</h1>
+    </div>
+<div class="col-sm-12">
+<!-- multistep form -->
+<form id="msform" name="applyForm" ng-submit="post(data)" novalidate=" ">
+<!-- progressbar -->
+<div class="row">
+  <ul id="progressbar">
+  <li class="active col-sm-3 col-xs-12">Personal Information</li>
+  <li class="col-sm-3 col-xs-12">Resume/Cover Letter</li>
+  <li class="col-sm-3 col-xs-12">Video</li>
+  <li class="col-sm-3 col-xs-12">Final Details</li>
+  </ul>
+</div>
+
+<!-- fieldsets -->
+<fieldset>
+<h2 class="fs-subtitle">Step 1: Enter Personal Information</h2>
+<h3>Must complete all fields to proceed!</h3><br>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-6">
+        <input type="text" name="Name" ng-model="data.first_name" value="" placeholder="First Name*" required=" " >
+      </div>
+      <div class="col-sm-6">
+        <input type="text" name="Name" ng-model="data.last_name" value="" placeholder="Last Name*" required=" " >
+
+
+      </div>
+      <div class="col-sm-12">
+        <div class="err_tip " ng-show="applyForm.Name.$dirty && applyForm.Name.$invalid ">
+            <span ng-show="applyForm.Name.$error.required ">Full name is required.</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="email" name="Email" ng-model="data.email" value="" placeholder="Email Address*" required=" " >
+          <div class="err_tip " ng-show="applyForm.Email.$dirty && applyForm.Email.$invalid ">
+              <span ng-show="applyForm.Email.$error.required ">Email is required.</span>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="text" name="Address" ng-model="data.address" value="" placeholder="Street Address*" required>
+        <div class="err_tip " ng-show="applyForm.Address.$dirty && applyForm.Address.$invalid ">
+            <span ng-show="applyForm.Address.$error.required ">Address is required.</span>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <input type="text" name="City" ng-model="data.city" placeholder="City*" required>
+        <div class="err_tip " ng-show="applyForm.City.$dirty && applyForm.City.$invalid ">
+            <span ng-show="applyForm.City.$error.required ">City is required.</span>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <input type="text" name="State" ng-model="data.state" placeholder="State*" required>
+        <div class="err_tip " ng-show="applyForm.State.$dirty && applyForm.State.$invalid ">
+            <span ng-show="applyForm.State.$error.required ">State is required.</span>
+        </div>
+      </div>
+      <div class="col-sm-4"><input type="text" name="Phone" ng-model="data.phone" placeholder="Phone Number*" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" required>
+      <span class="alert alert-phone" ng-show="applyForm.Phone.$error.pattern"><i class="red fa fa-exclamation"></i> Enter Valid Number ex.555-555-5555</span><br>
+      </div>
+    </div>
+    <div class="row hidden">
+
+      <div class="col-sm-6">
+        <label for="">For Employer Use Only</label><input type="text" name="Title" ng-model="data.job" disabled="disabled" required><br></div>
+      <div class="col-sm-6"></div>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+<!-- ng-disabled="applyForm.Name.\$invalid || applyForm.Email.\$invalid || applyForm.Address.\$invalid || applyForm.City.\$invalid || applyForm.State.\$invalid || applyForm.Phone.\$invalid" -->
+<button type="button" name="next" ng-class="{'btn-danger': applyForm.Name.$invalid || applyForm.Email.$invalid || applyForm.Address.$invalid || applyForm.City.$invalid || applyForm.State.$invalid || applyForm.Phone.$invalid }" next class="next action-button turq-bg"
+  ng-disabled="applyForm.Name.$invalid || applyForm.Email.$invalid || applyForm.Address.$invalid || applyForm.City.$invalid || applyForm.State.$invalid || applyForm.Phone.$invalid" value="Next">Next</button>
+</fieldset>
+<fieldset>
+<h2 class="fs-title">Resume and Cover Letter</h2>
+<h3>Must complete all fields to proceed!</h3>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="file-input-wrapper">
+      <input type="file" name="file" class="btn btn-primary turq-bg" id="input" required/>
+      <div class="err_tip " ng-show="applyForm.file.$dirty && applyForm.file.$invalid ">
+          <span ng-show="applyForm.file.$error.required ">File is required.</span>
+      </div>
+    </div>
+    <p class="text-left">Upload your Resume PDF or Word doc only. 5MB Max.</p>
+    <p class="text-left">An alert will trigger confirming that the resume was submitted.</p>
+  </div>
+  <div class="col-sm-6">
+    <label for="">Cover Letter/ Message:<span>*</span></label>
+    <textarea type="text" name="Message" ng-model="data.message" value="" rows="10" required></textarea>
+    <div class="err_tip " ng-show="applyForm.Message.$dirty && applyForm.Message.$invalid ">
+        <span ng-show="applyForm.Message.$error.required ">File is required.</span>
+    </div>
+  </div>
+</div>
+<input type="button" name="previous" previous class="turq-bg previous action-button" value="Previous" />
+<button type="button" name="next" ng-class="{'btn-danger': applyForm.Message.$invalid || applyForm.file.$invalid }" next class="next action-button turq-bg"
+  ng-disabled="applyForm.Message.$invalid || applyForm.file.$invalid" value="Next">Next</button>
+</fieldset>
+<fieldset>
+<h2 class="fs-title">Video Submission</h2>
+<h3 class="fs-subtitle">Don't worry this is private!</h3>
+<h3>Must complete all fields to proceed!</h3>
+<div class="col-sm-12">
+
+  <camera cameraz id='002' data-app-id='a-9020e000-fb00-0131-cc57-12313914f10b'></camera>
+  <br>
+  <br>
+  <p class="lead text-center">Web Cam: Must review and accept video before clicking Next.</p>
+</div>
+<br>
+<input type="button" name="previous" previous class="turq-bg previous action-button" value="Previous" />
+<input type="button" name="next" next class="turq-bg next action-button" value="Next" />
+</fieldset>
+<fieldset>
+<h2 class="fs-title">Submission Overview</h2>
+<div class="col-sm-12">
+  First Name: {{data.first_name}} <br>
+  Last Name: {{data.last_name}} <br>
+  Email: {{data.email}} <br>
+  Phone Number: {{data.phone}} <br>
+  Address: {{data.addresss}} {{data.city}}, {{data.state}}
+</div>
+<input type="button" name="previous" previous class="turq-bg previous action-button" value="Previous" />
+<button type="submit" class="btn-danger action-button contact-btn">Submit</button>
+</fieldset>
+</form>
+
+</div>
+
+
+</section>
+
+<section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</section>

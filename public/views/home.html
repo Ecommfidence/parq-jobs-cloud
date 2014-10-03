@@ -1,0 +1,65 @@
+<div id="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h1 class="white margtop250 font60 text-shadow">WORK SOMEWHERE AWESOME</h1><hr>
+        <p class="lead white text-shadow">Check out the jobs for the hottest spot in San Diego</p>
+        <a href="#header" du-smooth-scroll class="width30 text-center btn btn-primary turq-color btn-lg btn-perspective">View Jobs</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br>
+<section>
+  <div class="container">
+    <div id="header" class="row">
+      <div class="col-sm-12">
+        <h1 class="text-center white">CURRENT JOB OPENINGS</h1>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="list-grp btn-group width100">
+          <a class="btn btn-default fa fa-arrow-left" ng-click="prev()"></a>
+          <a class="btn btn-default width100" ng-click="typeFilter(type)" ng-if="$index <= cursor+2 && $index >= cursor" ng-repeat="type in types">{{type}}</a>
+          <a class="btn btn-default fa fa-arrow-right" ng-click="next()"></a>
+        </div>
+        <div class="list-bg">
+          <div ng-repeat="job in jobs | orderBy:'-updatedAt'" class="list" ng-class="{list1: $index % 2, listOver: over}" ng-mouseenter="over=true" ng-mouseleave="over=false" ng-click="view(job.id)">
+            <div class="row">
+              <div class="text-center col-xs-2">
+                <div class="date-box">
+                  <h5>{{job.createdAt | date: 'd'}}</h5>
+                  <h5>{{job.createdAt | date: 'MMM'}}</h5>
+                </div>
+              </div>
+              <div class="col-xs-10">
+                <h4>{{job.attributes.title}}</h4>
+                <h5>{{job.attributes.city}}, {{job.attributes.state}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 job-dets">
+        <div ng-hide="current" ng-class="{fadeInRight: animate}" class="animated job-dets-field dets-def">
+            <h1 class="defa white text-shadow">{{jobcount}} Positions In San Diego</h1>
+        </div>
+        <div ng-show="current" ng-class="{fadeInRight: animate}" class="animated job-dets-field dets-def">
+          <div class="abs-center">
+          <h1 class="ellipsis white text-center">{{current.attributes.title}}</h1>
+          <h3 class="white text-center">{{current.attributes.city}}, {{current.attributes.state}}</h3>
+          <br>
+          <div class="text-center">
+            <a ng-click="more()" class="text-center width60 btn btn-primary turq-color btn-lg btn-perspective inline">Details</a>
+            <a ng-href="#/apply/{{current.id}}" class="text-center width60 btn btn-primary turq-color btn-lg btn-perspective inline">Apply</a>
+          </div>
+          <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

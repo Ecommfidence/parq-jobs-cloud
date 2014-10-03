@@ -1,0 +1,33 @@
+<div ng-controller="OpeningList" class="margtop60">
+  <div class="container">
+      <div class="row">
+          <h1 class="text-center">Job Openings</h1><hr>
+      </div>
+
+
+      <div class="row">
+        <div id="msform" class="text-center width40 marg-auto">
+          <input type="text" placeholder="Search job title..." ng-model="search">
+        </div>
+        <br>
+        <div class="col-sm-4" ng-repeat="job in jobs | filter:search | orderBy:'-createdAt'">
+          <div class="text-center">
+            <a href="" ng-click="viewSingle(job.id)">
+            <img ng-src="{{job.attributes.img}}" alt="" class='img-responsive inline'>
+            </a>
+          </div>
+          <div class="panel-body panel-card-section">
+            <div class="media">
+              <a href="" ng-click="viewSingle(job.id)" class="text-normal">{{job.attributes.title}}
+              </a><i class="fa fa-edit" title="Edit" ng-click="edit(job.id)"></i>
+              <div class="text-muted listing-location text-truncate">{{applications.length}} applications · {{job.attributes.city}}, {{job.attributes.state}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <hr><br>
+
+  </div>
+
+</div>

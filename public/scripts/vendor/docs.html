@@ -1,0 +1,184 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OAuth that just works.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{pageDesc}}">
+    <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700,200' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <link rel="publisher" href="https://plus.google.com/114197621848884111231" />
+    <link rel="canonical" href="https://oauth.io{{location}}" />
+
+    <link rel="stylesheet" href="/lib/bootstrap-3.1.1/css/bootstrap.css" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/lib/select2/select2.css" type="text/css" />
+    <link rel="stylesheet" href="/lib/selectize/0.9.1/css/selectize.css">
+    <link rel="stylesheet" href="/lib/selectize/0.9.1/css/selectize.default.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <script src="/lib/jquery/jquery2.js"></script>
+    <script src="/lib/jquery-ui/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="/lib/highlight/monokai.min.css">
+    <script src="/lib/highlight/highlight.pack.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="/lib/angular/angular-1.2.16.min.js"></script>
+    <!--<script src="/lib/md5/md5.js"></script>-->
+    <script src="/lib/angular-ui-router/angular-ui-router.min.js"></script>
+
+    <script src="/lib/angular-ui-bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="/lib/angular-cookies/angular-cookies.js"></script>
+    <script src="/lib/sugar/sugar.min.js"></script>
+    <!--<script src="/lib/chartjs/Chart.min.js"></script>-->
+    <script src="/lib/chartjs/ChartNew.js"></script>
+    <script src="/lib/select2/select2.js"></script>
+    <script src="/lib/selectize/0.9.1/js/standalone/selectize.min.js"></script>
+    <script src="/lib/bootstrap-3.1.1/js/bootstrap.js"></script>
+    <script src="/lib/angular-ui-select2/select2.js"></script>
+
+    <script src="/lib/jspdf/jspdf.min.js"></script>
+    <script src="/lib/jspdf/jspdf.plugin.from_html.js"></script>
+    <script src="/lib/jspdf/jspdf.plugin.addhtml.js"></script>
+    <!--<script src="/lib/rasterizeHTML/rasterizeHTML.min.js"></script>-->
+   <script src="/lib/rasterizeHTML/rasterizeHTML.allinone.js"></script>
+     <!--<script src="/lib/rasterizeHTML/rasterizeHTML.js"></script>-->
+    <!--<script src="/lib/html2canvas/html2canvas.min.js"></script>-->
+
+    <script src="/lib/tryit/tryit.js"></script>
+    <script src="/lib/angular-drag-drop/angular-dragdrop.js"></script>
+    
+    <script src="/lib/angular-local-storage/localStorageModule.js"></script>
+    <!-- <script src="/lib/bootstrap-scrollspy/bootstrap-scrollspy.js"></script> -->
+    <script src="/auth/download/latest/oauth.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41255889-1', 'oauth.io');
+    </script>
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+mixpanel.init("ad0f32ccf5636aec8935e4d7eba59ecc");</script><!-- end Mixpanel -->
+
+    <script type="text/javascript">
+	  var _cio = _cio || [];
+	  (function() {
+	    var a,b,c;a=function(f){return function(){_cio.push([f].
+	    concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+	    "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+	    var t = document.createElement('script'),
+	        s = document.getElementsByTagName('script')[0];
+	    t.async = true;
+	    t.id    = 'cio-tracker';
+	    t.setAttribute('data-site-id', 'de532064637129677cda');
+	    t.src = 'https://assets.customer.io/assets/track.js';
+	    s.parentNode.insertBefore(t, s);
+	  })();
+	</script>
+    <script>
+      window.stripeKey = "pk_live_UXEgmn52nYzuSczH2MCSQ9qQ"
+      window.demoKey = "qdDwsI-I5nwFysmZWusnG438k4k";
+      window.loginKey = "qdDwsI-I5nwFysmZWusnG438k4k";
+
+      
+    </script>
+    
+</head>
+<body style="-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;">
+    <div google-analytics></div>
+    <div id="oauthio">
+      <div class="navbar" id="header" style="margin-bottom: 0;background-color: transparent; font-size: 1.0em">
+        <div class="container">
+          <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Be sure to leave the brand out there if you want it shown -->
+          <a class="navbar-brand" style="font-family: 'YanoneKLight', sans-serif; font-size: 1.8em; color: #6d6c6c" href="/">
+            <img class="pull-left" src="/img/logo_text.png" style="margin-top: -20px; top: 8px;position: relative; z-index:5" height="45" alt="OAuth.io logo">
+          </a>
+
+
+          <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+          <div class="ng-cloak navbar-collapse collapse navbar-responsive-collapse">
+
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav pull-right ng-cloak">
+              <!--<li ng-class="{active: selectedMenu == '/features'}" ><a href="/features">Features</a></li>-->
+              <li ng-class="{active: selectedMenu == '/getting-started'}">
+              <a href="/getting-started" >Getting Started</a>
+              </li>
+              <li ng-class="{active: selectedMenu == '/providers'}" ><a href="/providers">Providers</a></li>
+              <li ng-class="{active: selectedMenu.substr(0,5) == '/docs'}"><a href="/docs/overview">Documentation</a></li>
+              <li style="margin-right: 20px" ng-class="{active: selectedMenu.substr(0,8) == '/pricing'}"><a href="/pricing">Pricing</a></li>
+              <li ng-class="{active: selectedMenu == '/signin'}" ng-hide="UserService.isLogin()"><a href="/signin">Log in</a></li>
+              <li ng-class="{active: selectedMenu == '/signup'}" ng-hide="UserService.isLogin()"><a href="/signup"><strong>Sign up</strong></a></li>
+              <li ng-hide="!UserService.isLogin()" ng-class="{active: selectedMenu == '/dashboard'}" ng-show="UserService.isLogin()"><a href="/dashboard" style="cursor: pointer">Dashboard</a></li>
+              <li ng-show="UserService.isLogin() && notifications.length > 0" ng-click="openNotifications()"><a id="notification" href="javascript:void(0);"><i style="position: relative; top: 3px; font-size: 16px" class="glyphicon glyphicon-bell"></i> <span style="background-color: #FFF; border: 2px solid rgb(0, 121, 166); color: #666;" class="badge">{{notifications.length}}</span></a></li>
+              <li ng-hide="!UserService.isLogin()" ng-class="{active: selectedMenu == '/logout'}" ng-show="UserService.isLogin()"><a href="/logout" style="cursor: pointer"><i style="position: relative; top: 3px; font-size: 16px" class="glyphicon glyphicon-off"></i></a></li>
+            </ul>
+          </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+      </div><!-- /.navbar -->
+
+      
+      <div id="container">
+        <div id="content" ui-view class="ng-cloak"></div>
+      </div>
+      <div id="footer-wrapper">
+        <div id="footer">
+          <div id="container-footer">
+            <div class="row">
+              <div class="col-xs-3 logo">
+                <p><img src="/img/logo-white.png" alt="logo"></p>
+                <p><a href="/dashboard"><button>START NOW</button></a></p>
+              </div>
+              <div class="col-xs-3 link-content">
+                <p><strong>Main links:</strong></p>
+                <ul style="margin-top:10px">
+                  <li><a href="/features">Features</a></li>
+                  <li><a href="/providers">Providers</a></li>
+                  <li><a href="/docs/overview">Documentation / API</a></li>
+                  <li><a href="/pricing">Pricing</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-3 link-content">
+                <ul style="margin-top: 30px;">
+                  <li><a href="/faq">FAQ</a></li>
+                  <li><a href="/contact-us">Contact Us</a></li>
+                  <li><a href="http://blog.oauth.io/" target="_blank">Blog</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-3 social">
+                <p style="margin: 0"><strong>Find us on:</strong></p>
+                <p>
+                  <a target="_blank" href="https://www.facebook.com/oauthio"><img src="/img/facebook.original.png" alt=""></a>
+                  <a target="_blank" href="https://twitter.com/oauth_io"><img src="/img/twitter.original.png" alt=""></a>
+                  <a href="https://www.linkedin.com/company/2615410"><img src="/img/linkedin.original.png" alt=""></p></a>
+                <a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="sub-footer">
+          <p class="text-center">© 2014 OAuth.io <img src="/img/logo-white.png" alt="logo" width="32" height="32"> <a href="/terms">Terms of service</a></p>
+        </div>
+      </div>
+<!--    <div id="footer" class="container" style="margin-top: 30px">
+        <div style="font-size: 1.0em; margin-left: 20px; margin-bottom: 20px" class="pull-left">Powered by <a href="http://webshell.io" target="_blank" alt="Webshell logo"><img width="100" style="position: relative; top: -2px; left: 3px;" id="wsh-powered" src="/img/webshell-logo.png"></a></div>
+        <div style="font-size: 1.0em; margin-bottom: 20px" class="pull-right"><a href="http://blog.oauth.io/" target="_blank">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/wishlist">Wishlist</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/imprint">Imprint</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/terms">Terms</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contact-us">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    </div>-->
+     <script src="/lib/requirejs/require.js" data-main="/js/main-built.js"></script>  
+    <!--  <script src="/lib/requirejs/require.js" data-main="/js/main-built.js"></script>-->
+
+</body>
+</html>

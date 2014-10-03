@@ -1,0 +1,64 @@
+<div class="margtop60">
+  <div class="container">
+    <div class="row">
+        <h1 class="text-center">APPLICATIONS</h1>
+    </div>
+    <div class="row">
+      <div id="msform" class="text-center width40 marg-auto">
+        <input type="text" class="form-control" placeholder="Search Applications" ng-model="search"/>
+      </div>
+
+      <table id="jobs-listing">
+        <thead>
+        <tr class="header">
+          <th class="posted">Posted <span ng-click="whenCreated()" class="fa fa-sort"></span></th>
+          <th class="position">Position</th>
+          <th class="manager">Name <span ng-click="last=!last; sort('last_name', last)" class="fa fa-sort"></span></th>
+          <th class="manager">Email <span ng-click="email=!email; sort('email', email)" class="fa fa-sort"></span></th>
+          <th class="manager">Votes <span ng-click="votes=!votes; sort('votes', votes)" class="fa fa-sort"></span></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="app in applications | filter: search" class="view-list-item">
+          <td class="posted">
+            <div>
+              <div class="units">{{app.createdAt | date: 'dd'}}</div>
+              <div class="sub uppercase">{{app.createdAt | date: 'MMM'}}</div>
+            </div>
+          </td>
+          <td class="dist">
+            <div>
+              <div class="sub uppercase">{{app.attributes.job_title | uppercase}}</div>
+            </div>
+          </td>
+          <td class="position">
+            <div>
+              <div class="strong">
+                {{app.attributes.first_name}} {{app.attributes.last_name}}
+              </div>
+            </div>
+          </td>
+          <td class="position">
+            <div>
+              <div class="strong">
+                {{app.attributes.email}}
+              </div>
+            </div>
+          </td>
+          <td class="position">
+            <div>
+              <div class="strong">
+                {{app.attributes.votes}}
+              </div>
+            </div>
+          </td>
+          <td class="actions">
+            <a ng-click="view(app.id)" class="btn btn-sm uppercase btn-primary">view now</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

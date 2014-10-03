@@ -1,0 +1,111 @@
+<!-- BEGIN PAGE CONTENT -->
+<div class="container">
+    <div class="container-fluid">
+
+        <!-- Begin page heading -->
+        <h1 class="text-center">MAHASKA DASHBOARD<hr></h1>
+        <!-- End page heading -->
+
+<!-- BEGIN EXAMPLE ALERT -->
+<div class="alert alert-warning alert-bold-border fade in alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p><strong>Welcome!</strong></p>
+    <p class="text-muted">You are viewing the Administrative panel for <a class="alert-link" href="#fakelink">Mahaska Bottling</a>.
+        This tool was designed to serve both the content pages of the website and for resume submissions needed for HR.</p>
+</div>
+<!-- END EXAMPLE ALERT -->
+
+
+<!-- BEGIN SiTE INFORMATIONS -->
+<div class="row">
+    <div ng-if="currentUser.attributes.role === 'admin'" class="col-sm-4">
+        <div class="the-box no-border bg-success tiles-information">
+            <i class="fa fa-users icon-bg"></i>
+            <div class="tiles-inner text-center">
+                <p>TOTAL APPLICATIONS</p>
+                <h1 class="bolded">{{appcount}}</h1>
+                <div class="progress no-rounded progress-xs">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    </div><!-- /.progress-bar .progress-bar-success -->
+                </div><!-- /.progress .no-rounded -->
+            </div><!-- /.tiles-inner -->
+        </div><!-- /.the-box no-border -->
+    </div><!-- /.col-sm-3 -->
+    <div ng-if="currentUser.attributes.role === 'admin'" class="col-sm-4">
+        <div class="the-box no-border bg-primary tiles-information">
+            <i class="fa fa-shopping-cart icon-bg"></i>
+            <div class="tiles-inner text-center">
+                <p>TOTAL JOB POSTINGS</p>
+                <h1 class="bolded">{{jobcount}}</h1>
+                <div class="progress no-rounded progress-xs">
+                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    </div><!-- /.progress-bar .progress-bar-primary -->
+                </div><!-- /.progress .no-rounded -->
+            </div><!-- /.tiles-inner -->
+        </div><!-- /.the-box no-border -->
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-3" ng-if="currentUser.attributes.role === 'user'">
+        <div class="the-box no-border bg-danger tiles-information">
+            <i class="fa fa-comments icon-bg"></i>
+            <div class="tiles-inner text-center">
+                <p>TOTAL BLOG POSTS</p>
+                <h1 class="bolded">TBA</h1>
+                <div class="progress no-rounded progress-xs">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                    </div><!-- /.progress-bar .progress-bar-danger -->
+                </div><!-- /.progress .no-rounded -->
+            </div><!-- /.tiles-inner -->
+        </div><!-- /.the-box no-border -->
+    </div><!-- /.col-sm-3 -->
+    <div class="col-xs-4">
+
+        <div class="the-box no-border tiles-information" style="padding-top: 0px;">
+            <div class="tiles-inner text-center">
+                <div class="tiles facebook-tile text-center">
+                    <i class="fa fa-facebook fa-1x"></i>
+                    <h1 class="bolded"><a href="">{{fb}} likes</a></h1>
+                    <div class="progress no-rounded progress-xs">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                        </div><!-- /.progress-bar .progress-bar-danger -->
+                    </div><!-- /.progress .no-rounded -->
+                </div><!-- /.tiles .facebook-tile -->
+
+            </div><!-- /.tiles-inner -->
+         </div>
+    </div><!-- /.col-xs-6 -->
+</div><!-- /.row -->
+<!-- END SITE INFORMATIONS -->
+
+
+<h4 class="text-center small-heading more-margin-bottom">COMPANY WEATHER</h4>
+
+<div class="row" ng-controller="weatherCtrl">
+    <div class="col-sm-4" ng-init="weatherGet(job.attributes.city, job.attributes.state)" ng-repeat="job in jobs | unique: 'attributes.city'| limitTo:3">
+        <!-- BEGIN WEATHER WIDGET 4 -->
+        <div class="the-box no-border full text-center">
+            <div class="the-box no-border no-margin"
+                 ng-class="{
+                 'bg-warning': $index === 0,
+                 'bg-danger': $index === 1,
+                 'bg-success': $index === 2,
+                 'bg-primary': $index === 3
+                 }">
+                <img ng-cloak src="{{weatherArray[$index].icon_url}}"/>
+                <h2 class="bolded less-distance">{{weatherArray[$index].temperature_string}}<i class="wi-degrees"></i></h2>
+                <h4>{{weatherArray[$index].weather}}</h4>
+            </div><!-- /.the-box no-border bg-warning no-margin -->
+            <div class="the-box no-border no-margin">
+                <h4 class="bolded less-distance">{{weatherArray[$index].display_location.full | uppercase}}</h4>
+
+            </div><!-- /.the-box no-border no-margin -->
+        </div><!-- /.the-box .no-border .full -->
+        <!-- END WEATHER WIDGET 4 -->
+    </div><!-- /.col-sm-3 -->
+</div><!-- /.row -->
+
+
+</div><!-- /.container-fluid -->
+
+</div><!-- /.page-content -->
+</div><!-- /.wrapper -->
+<!-- END PAGE CONTENT -->
